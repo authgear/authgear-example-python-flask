@@ -30,7 +30,6 @@ oauth.register(
 )
 
 
-# Controllers API
 @app.route("/")
 def home():
     return render_template(
@@ -60,14 +59,7 @@ def logout():
     return redirect(
         "https://"
         + env.get("AUTHGEAR_DOMAIN")
-        + "/v2/logout?"
-        + urlencode(
-            {
-                "returnTo": url_for("home", _external=True),
-                "client_id": env.get("AUTHGEAR_CLIENT_ID"),
-            },
-            quote_via=quote_plus,
-        )
+        + "/oauth2/end_session"
     )
 
 
